@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>配置</title>
+  <link href="js/elementui/index.css" rel="stylesheet">
+  
+  <script src="js/vue/vue.js"></script>
+  <script src="js/vue/axios.min.js"></script>
+  <script src="js/elementui/index.js"></script>
+
+</head>
+<body>
+<div id="app" style="margin: auto 2% ">
+
+</div>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      tokens:[],
+      contracts:[]
+    },
+    created() {
+      axios({
+        method: 'post',
+        url:"/api/token/list",
+      }).then(r=>{
+        this.tokens =  r["data"]["data"];
+      })
+    }
+  })
+</script>
+</body>
+</html>

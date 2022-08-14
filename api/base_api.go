@@ -36,7 +36,7 @@ func (api *BaseApi) Fetch(r *ghttp.Request) {
 }
 func (api *BaseApi) List(r *ghttp.Request) {
 
-	var data g.Map = r.GetMap()
+	var data g.Map = GetJsonMap(r)
 	result, err := api.Service.List(data)
 	api.Result(result, err, r)
 }
@@ -65,5 +65,8 @@ func GetJsonMap(r *ghttp.Request) g.Map {
 			return queryMap
 		}
 	}
-	return r.GetMap()
+	data := r.GetMap()
+	delete(data, "_name")
+	delete(data, "_op")
+	return data
 }

@@ -29,7 +29,6 @@ func SimpleApiRun() {
 	s := zhang.Default()
 	s.Group("/api", func(group *ghttp.RouterGroup) {
 		RegisterSimpleApi(group)
-		group.Middleware()
 	})
 	s.Run()
 }
